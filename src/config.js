@@ -1,4 +1,6 @@
 export default {
+    MAX_ATTACHMENT_SIZE: 5000000,
+
     s3: {
       REGION: "ap-northeast-2",
       BUCKET: "notes-app-api-prod-serverlessdeploymentbucket-122nhwscklttf"
