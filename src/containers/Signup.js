@@ -42,16 +42,18 @@ export default function Signup() {
 
     setIsLoading(true);
 
-    try{
-        const newUser = await Auth.signUp({
-            username: fields.email,
-            password: fields.password,
-        });
-        setIsLoading(false);
-        setNewUser(newUser);
-    } catch(e){
-        onError(e);
-        setIsLoading(false);
+    setNewUser("test");
+
+    try {
+      const newUser = await Auth.signUp({
+        username: fields.email,
+        password: fields.password,
+      });
+      setIsLoading(false);
+      setNewUser(newUser);
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
     }
   }
 
@@ -60,15 +62,15 @@ export default function Signup() {
 
     setIsLoading(true);
 
-    try{
-        await Auth.confirmSignUP(fields.email, fields.confirmationCode);
-        await Auth.signIn(fields.email, fields.password);
-
-        userHasAuthenticated(true);
-        history.push("/");
-    }catch(e){
-        onError(e);
-        setIsLoading(false);
+    try {
+      await Auth.confirmSignUp(fields.email, fields.confirmationCode);
+      await Auth.signIn(fields.email, fields.password);
+  
+      userHasAuthenticated(true);
+      history.push("/");
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
     }
   }
 

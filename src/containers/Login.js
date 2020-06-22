@@ -1,28 +1,29 @@
 import React, { useState } from "react";
+import { Auth } from "aws-amplify";
+import {useHistory} from "react-router-dom"
 import { FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
-import "./Login.css";
-import { Auth } from "aws-amplify";
 import { useAppContext } from "../libs/contextLib";
-import {useHistory} from "react-router-dom"
-import { onError} from "../libs/errorLib";
 import { useFormFields } from "../libs/hooksLib";
+import { onError} from "../libs/errorLib";
 import "./Login.css";
+
 
 
 
 export default function Login() {
+  const history = useHistory();
   const { userHasAuthenticated } = useAppContext(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
-  const [isLoading, setIsLoading] = useState(false);
-  const [fields, handleFieldChange] = useFormFields({
+    const [fields, handleFieldChange] = useFormFields({
     email:"",
     password:""
   });
+
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return fields.email.length > 0 && fields.password.length > 0;
   }
 
   async function handleSubmit(event) {
@@ -49,14 +50,14 @@ export default function Login() {
             autoFocus
             type="email"
             value={fields.email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={handleFieldChange}
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
           <FormControl
             value={fields.password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={handleFieldChange}
             type="password"
           />
         </FormGroup>
