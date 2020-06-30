@@ -1,6 +1,6 @@
 export default {
     MAX_ATTACHMENT_SIZE: 5000000,
-
+    STRIPE_KEY: "pk_test_51Grj1EB61F6pAjim6EqRViVJUkGzexYN0caatt1DjlqdrDLXyal2X3DZOeticUQbKifLBq0GFNq7zs2OOUg27DAU00DpdFuLb6Y",
     s3: {
       REGION: "ap-northeast-2",
       BUCKET: "notes-app-api-prod-serverlessdeploymentbucket-122nhwscklttf"
